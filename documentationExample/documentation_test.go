@@ -2,6 +2,7 @@ package documentationExample
 
 import "fmt"
 
+// http://localhost:6060/pkg/github.com/valantonini/go-kaizen/documentationExample/#pkg-examples
 // https://pkg.go.dev/testing#hdr-Examples.
 // Function name begins with Example.
 // Compile time checking when running go test -v ./... by adding // output:
