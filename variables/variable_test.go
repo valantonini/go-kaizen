@@ -1,11 +1,11 @@
-package go_kaizen
+package variables
 
 import (
 	"fmt"
 )
 
 // Default values for uninitialised variables
-func Example() {
+func Example_variables() {
 	// string
 	var str string
 	fmt.Println(str == "")
