@@ -1,4 +1,4 @@
-package Pointers
+package pointers
 
 import (
 	"github.com/valantonini/go-kaizen/assert"
