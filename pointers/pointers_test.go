@@ -1,16 +1,18 @@
 package pointers
 
 import (
+	"github.com/matryer/is"
 	"github.com/valantonini/go-kaizen/assert"
 	"testing"
 )
 
 func Test_Pointers(t *testing.T) {
+	is := is.New(t)
 	t.Run("pointer addresses", func(t *testing.T) {
-		var x int
-		var p *int          // *int == pointer to int
-		p = &x              // &x == address of x
-		assert.NotNil(t, p) // *p == value at address
+		var x int = 7
+		var p *int      // *int == pointer to int
+		p = &x          // &x == address of x
+		is.Equal(*p, 7) // *p == value at address
 	})
 
 	t.Run("value at pointer address", func(t *testing.T) {

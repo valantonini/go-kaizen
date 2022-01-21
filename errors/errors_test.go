@@ -2,7 +2,7 @@ package errors
 
 import (
 	"errors"
-	"github.com/valantonini/go-kaizen/assert"
+	"github.com/matryer/is"
 	"testing"
 )
 
@@ -16,17 +16,14 @@ func errorIfEven(num int) error {
 }
 
 func Test_Errors(t *testing.T) {
+	is := is.New(t)
 	t.Run("strongly typed errors", func(t *testing.T) {
-		got := errorIfEven(2)
-		want := EvenNumberError
-
-		assert.Equal(t, got, want)
+		result := errorIfEven(2)
+		is.Equal(result, EvenNumberError)
 	})
 
 	t.Run("error messages", func(t *testing.T) {
-		got := errorIfEven(2).Error()
-		want := "number is even"
-
-		assert.Equal(t, got, want)
+		result := errorIfEven(2).Error()
+		is.Equal(result, "number is even")
 	})
 }

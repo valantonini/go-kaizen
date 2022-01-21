@@ -1,26 +1,27 @@
 package variables
 
 import (
-	"fmt"
-	"github.com/valantonini/go-kaizen/assert"
+	"github.com/matryer/is"
 	"testing"
 )
 
 // Default values for uninitialised variables
 func Test_Variables(t *testing.T) {
+	is := is.New(t)
+
 	t.Run("string", func(t *testing.T) {
 		var str string
-		assert.Equal(t, str, "")
+		is.Equal(str, "")
 	})
 
 	t.Run("number", func(t *testing.T) {
 		var n int
-		assert.Equal(t, n, 0)
+		is.Equal(n, 0)
 	})
 
 	t.Run("boolean", func(t *testing.T) {
 		var b bool
-		fmt.Println(b == false)
+		is.Equal(b, false)
 	})
 
 	t.Run("interface", func(t *testing.T) {
@@ -28,31 +29,31 @@ func Test_Variables(t *testing.T) {
 			Foo()
 		}
 		var i interfaceType
-		assert.Nil(t, i)
+		is.Equal(i, nil)
 	})
 
 	t.Run("slice", func(t *testing.T) {
 		var slice []int
-		assert.Nil(t, slice)
+		is.Equal(slice, nil)
 	})
 
 	t.Run("pointer", func(t *testing.T) {
 		var p *int
-		assert.Nil(t, p)
+		is.Equal(p, nil)
 	})
 
 	t.Run("channel", func(t *testing.T) {
 		var ch chan int
-		assert.Nil(t, ch)
+		is.Equal(ch, nil)
 	})
 
 	t.Run("map", func(t *testing.T) {
 		var m map[string]string
-		assert.Nil(t, m)
+		is.Equal(m, nil)
 	})
 
 	t.Run("func", func(t *testing.T) {
 		var f func(s string)
-		assert.Nil(t, f)
+		is.Equal(f, nil)
 	})
 }
