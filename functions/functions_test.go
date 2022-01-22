@@ -10,9 +10,9 @@ type coord struct {
 	y int
 }
 
-// namedReturns demonstrates named returns. Not always the most obvious
+// namedReturns demonstrates named return variables in the signature. Not always the most obvious
 func namedReturns(c coord) (x, y int) {
-	// can be directly assigned to after being declared in signature return
+	// can be directly assigned to
 	x = c.x
 	y = c.y
 
