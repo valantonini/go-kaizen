@@ -16,14 +16,14 @@ func errorIfEven(num int) error {
 }
 
 func Test_Errors(t *testing.T) {
-	is := is.New(t)
+	Is := is.New(t)
 	t.Run("strongly typed errors", func(t *testing.T) {
 		result := errorIfEven(2)
-		is.Equal(result, EvenNumberError)
+		Is.Equal(result, EvenNumberError)
 	})
 
 	t.Run("error messages", func(t *testing.T) {
 		result := errorIfEven(2).Error()
-		is.Equal(result, "number is even")
+		Is.Equal(result, "number is even")
 	})
 }
