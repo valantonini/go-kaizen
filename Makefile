@@ -3,3 +3,6 @@ test:
 
 bench:
 	go test -bench=. ./benchmarking/benchmarking_test.go
+
+docs:
+	godoc
