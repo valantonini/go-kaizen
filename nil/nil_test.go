@@ -17,15 +17,15 @@ func Test_Nil(t *testing.T) {
 			return t == nil
 		}
 
-		var arr map[string]string = nil
-		isNil(arr)
+		var arr []string = nil
 		Is.Equal(arr, nil)
 
 		// in Go has two basic pieces of information; the type of the pointer, and the value it points to
-		mapTypeInfo := fmt.Sprintf("(%T, %v)\n", arr, arr)
-		Is.Equal(mapTypeInfo, "([]string, [])")
+		arrTypeInfo := fmt.Sprintf("(%T, %v)", arr, arr)
+		fmt.Print(arrTypeInfo)
+		Is.Equal(arrTypeInfo, "([]string, [])")
 
-		nilTypeInfo := fmt.Sprintf("(%T, %v)\n", nil, nil)
+		nilTypeInfo := fmt.Sprintf("(%T, %v)", nil, nil)
 		Is.Equal(nilTypeInfo, "(<nil>, <nil>)")
 
 		// isNil is incorrectly implemented and will incorrectly report false
