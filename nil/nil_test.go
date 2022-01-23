@@ -1,4 +1,4 @@
-package equality
+package nil
 
 import (
 	"fmt"
@@ -6,10 +6,11 @@ import (
 	"testing"
 )
 
-func Test_Equality(t *testing.T) {
+func Test_Nil(t *testing.T) {
 	Is := is.New(t)
 
 	t.Run("when nil isn't nil", func(t *testing.T) {
+		// https://yourbasic.org/golang/gotcha-why-nil-error-not-equal-nil/
 		// https://www.calhoun.io/when-nil-isnt-equal-to-nil/
 
 		isNil := func(target interface{}) bool {
