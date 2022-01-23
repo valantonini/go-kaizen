@@ -13,6 +13,12 @@ var makeCounterClosure = func() func() int {
 	}
 }
 
+var makeParamCounterClosure = func(start int) func() int {
+	return func() int {
+		return start + 1
+	}
+}
+
 func TestClosures(t *testing.T) {
 	Is := is.New(t)
 
@@ -31,5 +37,13 @@ func TestClosures(t *testing.T) {
 		Is.Equal(counter2(), 1)
 		Is.Equal(counter1(), 2)
 		Is.Equal(counter2(), 2)
+	})
+
+	t.Run("variables are passed as values", func(t *testing.T) {
+		start := 0
+		counter := makeParamCounterClosure(start)
+
+		Is.Equal(counter(), 1)
+		Is.Equal(counter(), 1)
 	})
 }
