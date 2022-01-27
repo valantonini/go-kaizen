@@ -1,5 +1,5 @@
 # go-kaizen
-snippets on my journey of learning to Go language
+snippets on my journey of learning the Go language
 
 ## run
 ```bash
