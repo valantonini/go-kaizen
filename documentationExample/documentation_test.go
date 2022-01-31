@@ -6,7 +6,7 @@ import "fmt"
 // http://localhost:6060/pkg/github.com/valantonini/go-kaizen/documentationExample/#pkg-examples
 // https://pkg.go.dev/testing#hdr-Examples.
 
-// Function name begins with Example.
+// Function name begins with Example. *Must* include an output comment
 func ExampleSum() {
 	// One output check per line
 	fmt.Println(Sum(1, 2))
