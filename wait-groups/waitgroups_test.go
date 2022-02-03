@@ -1,4 +1,4 @@
-package waitGroups
+package wait_groups
 
 import (
 	"fmt"

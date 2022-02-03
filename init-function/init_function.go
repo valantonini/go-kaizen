@@ -1,4 +1,4 @@
-package initFunction
+package init_function
 
 var SetByInit = ""
 var SetByInit2 = ""

@@ -1,4 +1,4 @@
-package documentationExample
+package godoc_examples
 
 func Sum(a, b int) int {
 	return a + b

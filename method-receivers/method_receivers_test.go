@@ -1,4 +1,4 @@
-package methodReceivers
+package method_receivers
 
 import (
 	"github.com/matryer/is"

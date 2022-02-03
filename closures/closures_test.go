@@ -19,7 +19,7 @@ var makeParamCounterClosure = func(start int) func() int {
 	}
 }
 
-func TestClosures(t *testing.T) {
+func Test_Closures(t *testing.T) {
 	Is := is.New(t)
 
 	t.Run("local vars are stored in higher order functions closure", func(t *testing.T) {

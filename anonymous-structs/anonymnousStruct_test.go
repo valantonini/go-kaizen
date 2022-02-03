@@ -1,4 +1,4 @@
-package anonymousStructs
+package anonymous_structs
 
 import (
 	"bytes"

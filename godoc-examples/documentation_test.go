@@ -1,4 +1,4 @@
-package documentationExample
+package godoc_examples
 
 import "fmt"
 

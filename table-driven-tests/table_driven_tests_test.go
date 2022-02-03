@@ -1,4 +1,4 @@
-package tableDrivenTests
+package table_driven_tests
 
 import (
 	"math"

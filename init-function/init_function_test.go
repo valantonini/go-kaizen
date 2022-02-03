@@ -1,4 +1,4 @@
-package initFunction
+package init_function
 
 import (
 	"github.com/matryer/is"

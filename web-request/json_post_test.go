@@ -1,4 +1,4 @@
-package webRequest
+package web_request
 
 import (
 	"bytes"

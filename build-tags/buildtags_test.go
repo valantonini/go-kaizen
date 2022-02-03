@@ -1,7 +1,7 @@
 //go:build integration
 // +build integration
 
-package buildTags
+package build_tags
 
 import "testing"
 
