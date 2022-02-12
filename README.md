@@ -17,3 +17,4 @@ godoc
 - [Go by example](https://gobyexample.com)
 - [The Creeds of Software Craftsmanship](https://github.com/BeyondCodeBootcamp/beyondcodebootcamp/issues/18)
 - [Go proverbs](https://github.com/BeyondCodeBootcamp/go-proverbs/)
+- [golang-standards/project-layout](https://github.com/golang-standards/project-layout)
