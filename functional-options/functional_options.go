@@ -11,5 +11,8 @@ type Server struct {
 }
 
 func NewServer(host string) (*Server, error) {
+	if host == "" {
+		host = "localhost"
+	}
 	return &Server{host}, nil
 }
