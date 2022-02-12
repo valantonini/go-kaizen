@@ -8,11 +8,13 @@ type Option func(o *options) error
 
 type Server struct {
 	Host string
+	Port int
 }
 
 func NewServer(host string) (*Server, error) {
 	if host == "" {
 		host = "localhost"
 	}
-	return &Server{host}, nil
+
+	return &Server{host, 80}, nil
 }
