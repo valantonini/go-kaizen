@@ -34,7 +34,9 @@ func WithScheme(s string) Option {
 	}
 }
 
-// NewServer - “2.11.3 Functional options pattern”
+// NewServer - based on functional options pattern
+// https://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis
+// “2.11.3 Functional options pattern”
 // 100 Go Mistakes and How to Avoid Them MEAP V09
 func NewServer(host string, opts ...Option) (*Server, error) {
 	if host == "" {
