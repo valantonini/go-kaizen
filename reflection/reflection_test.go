@@ -51,15 +51,14 @@ func Test_Reflection(t *testing.T) {
 	})
 
 	t.Run("using reflection to dereference a pointer", func(t *testing.T) {
-		type occupation struct {
-			title string
-		}
+
+		occupation := "engineer"
 		person := struct {
 			Name       string
-			Occupation *occupation
+			Occupation *string
 		}{
 			"arnold",
-			&occupation{"engineer"},
+			&occupation,
 		}
 
 		r := reflect.ValueOf(person)
