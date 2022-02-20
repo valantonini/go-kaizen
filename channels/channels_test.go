@@ -29,4 +29,22 @@ func Test_Channels(t *testing.T) {
 
 		Is.Equal(got, "fast")
 	})
+
+	t.Run("ranging over channels", func(t *testing.T) {
+		queue := make(chan int, 2)
+		queue <- 1
+		queue <- 1
+
+		// it’s possible to close a non-empty channel but still have the remaining values be received.
+		close(queue)
+
+		count := 0
+
+		// Because we closed the channel above, the iteration terminates after receiving the 2 elements.
+		for elem := range queue {
+			count += elem
+		}
+
+		Is.Equal(count, 2)
+	})
 }
