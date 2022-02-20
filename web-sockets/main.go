@@ -1,9 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gorilla/websocket"
 	"log"
 	"net/http"
+	"sync"
 	"time"
 )
 
@@ -24,15 +26,40 @@ func wsEndpoint(w http.ResponseWriter, r *http.Request) {
 
 	log.Println("Client Connected")
 
+	var wg sync.WaitGroup
+	wg.Add(2)
+
+	go writePump(ws)
+	go readPump(ws)
+
+	wg.Wait()
+}
+
+func writePump(ws *websocket.Conn) {
 	ticker := time.NewTicker(1000 * time.Millisecond)
+	defer ticker.Stop()
+
 	for {
 		select {
 		case <-ticker.C:
-			err = ws.WriteMessage(1, []byte("message from server"))
+			err := ws.WriteMessage(1, []byte("message from server"))
 			if err != nil {
 				log.Println(err)
 			}
 		}
+	}
+}
+
+func readPump(ws *websocket.Conn) {
+	for {
+		_, message, err := ws.ReadMessage()
+		if err != nil {
+			if websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
+				log.Printf("error: %v", err)
+			}
+			break
+		}
+		fmt.Println(string(message))
 	}
 }
 

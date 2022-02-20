@@ -27,7 +27,7 @@ function disconnected() {
     console.log('Disconnected from server ...');
 }
 
-let count = 10;
 function processMessage(ws:WebSocket, m:MessageEvent) {
-    console.log('SERVER >> '+m.data);
+    console.log(m.data);
+    ws.send("message from client")
 }
