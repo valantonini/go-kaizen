@@ -52,4 +52,25 @@ func Test_Select(t *testing.T) {
 
 		Is.Equal(got, "timeout")
 	})
+
+	t.Run("timeout can be used to ensure select doesn't block forever", func(t *testing.T) {
+		chan1 := make(chan string)
+
+		got := ""
+
+		// https://gobyexample.com/non-blocking-channel-operations
+
+		// Basic sends and receives on channels are blocking. However, we can use select with a default clause to
+		// implement non-blocking sends, receives, and even non-blocking multi-way selects. If a value is available on
+		// messages then select will take the <-messages case with that value. If not it will immediately take the
+		// default case.
+		select {
+		case str := <-chan1:
+			got = str
+		default:
+			got = "default"
+		}
+
+		Is.Equal(got, "default")
+	})
 }
