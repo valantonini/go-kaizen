@@ -1,7 +1,9 @@
 package numbers
 
 import (
+	"errors"
 	"github.com/matryer/is"
+	"math"
 	"testing"
 )
 
@@ -47,5 +49,23 @@ func Test_Numbers(t *testing.T) {
 		got := number * number
 
 		Is.Equal(real(got), float64(-25))
+	})
+
+	t.Run("detecting overflow during addition", func(t *testing.T) {
+
+		safeAdd := func(a, b int) (int, error) {
+			if a > math.MaxInt-b {
+				return 0, errors.New("overflow")
+			}
+			return a + b, nil
+		}
+
+		result, err := safeAdd(1, 2)
+
+		Is.NoErr(err)
+		Is.Equal(result, 3)
+
+		result, err = safeAdd(math.MaxInt, 2)
+		Is.True(err != nil)
 	})
 }
