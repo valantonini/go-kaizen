@@ -48,4 +48,25 @@ func Test_Interfaces(t *testing.T) {
 			HelloWorld(&cw)
 		*/
 	})
+
+	t.Run("satisfying an interface declared in a struct", func(t *testing.T) {
+		type ContainerType struct {
+			io.Writer
+		}
+
+		buffer := new(bytes.Buffer)
+
+		// implementation supplied by implementation supplied on struct
+		instance := ContainerType{buffer}
+
+		// promoted from embedded io.Writer interface
+		instance.Write([]byte("foo"))
+
+		Is.Equal(buffer.String(), "foo")
+
+		// will explode:
+		// instance := ContainerType{}
+		// instance.Write([]byte("foo"))
+
+	})
 }
