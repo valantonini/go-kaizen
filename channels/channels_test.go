@@ -47,4 +47,21 @@ func Test_Channels(t *testing.T) {
 
 		Is.Equal(count, 2)
 	})
+
+	t.Run("read only channel return type", func(t *testing.T) {
+		makeChan := func() <-chan string {
+			c := make(chan string, 1)
+			// can write here
+			c <- "foo"
+			return c
+		}
+
+		ch := makeChan()
+
+		// will not compile, channel is read only
+		// ch <- "foo"
+
+		got := <-ch
+		Is.Equal(got, "foo")
+	})
 }
