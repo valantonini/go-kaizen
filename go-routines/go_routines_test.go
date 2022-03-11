@@ -27,15 +27,20 @@ func Test_GoRoutines(t *testing.T) {
 					return
 				default:
 					count++
-					time.Sleep(5 * time.Millisecond)
+					time.Sleep(1 * time.Millisecond)
 				}
 			}
 		}()
 
-		time.Sleep(15 * time.Millisecond)
+		time.Sleep(5 * time.Millisecond)
 		done <- true
 		wg.Wait()
 
-		Is.Equal(count, 2)
+		current := count
+		Is.True(count > 0)
+
+		// ensure the counter isn't incrementing
+		time.Sleep(5 * time.Millisecond)
+		Is.Equal(count, current)
 	})
 }

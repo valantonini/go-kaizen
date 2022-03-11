@@ -41,6 +41,6 @@ func ExampleJsonPost() {
 	err := json.Unmarshal(body, &c)
 
 	if err != nil {
-		fmt.Errorf("error performing post %v", err)
+		_ = fmt.Errorf("error performing post %v", err)
 	}
 }
