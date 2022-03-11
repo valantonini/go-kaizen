@@ -1,10 +1,11 @@
 package go_routines
 
 import (
-	"github.com/matryer/is"
 	"sync"
 	"testing"
 	"time"
+
+	"github.com/matryer/is"
 )
 
 func Test_GoRoutines(t *testing.T) {
@@ -31,7 +32,7 @@ func Test_GoRoutines(t *testing.T) {
 			}
 		}()
 
-		time.Sleep(10 * time.Millisecond)
+		time.Sleep(15 * time.Millisecond)
 		done <- true
 		wg.Wait()
 
