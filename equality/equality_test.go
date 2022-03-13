@@ -1,9 +1,10 @@
 package equality
 
 import (
-	"github.com/matryer/is"
 	"reflect"
 	"testing"
+
+	"github.com/matryer/is"
 )
 
 func Test_Equality(t *testing.T) {
@@ -48,5 +49,24 @@ func Test_Equality(t *testing.T) {
 
 		Is.True(n1 == n2)
 		Is.True(reflect.DeepEqual(n1, n2))
+	})
+
+	t.Run("uses address and not value for structural equality", func(t *testing.T) {
+		type wrapper struct {
+			value *string
+		}
+
+		//same value, different address
+		val1 := "foo"
+		val2 := "foo"
+
+		n1 := wrapper{&val1}
+		n2 := wrapper{&val2}
+
+		Is.True(n1 != n2)
+
+		// same value, same address
+		n2 = wrapper{&val1}
+		Is.True(n1 == n2)
 	})
 }
