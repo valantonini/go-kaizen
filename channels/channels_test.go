@@ -64,4 +64,19 @@ func Test_Channels(t *testing.T) {
 		got := <-ch
 		Is.Equal(got, "foo")
 	})
+
+	t.Run("an empty non buffered channel will block when being read", func(t *testing.T) {
+
+		ch := make(chan string)
+
+		select {
+		case _ = <-ch:
+			Is.Fail()
+		case _ = <-time.After(5 * time.Millisecond):
+			Is.True(true)
+			return
+		}
+
+		Is.Fail()
+	})
 }
