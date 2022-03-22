@@ -2,6 +2,7 @@ package reflection
 
 import (
 	"github.com/matryer/is"
+	"io"
 	"reflect"
 	"testing"
 )
@@ -91,4 +92,27 @@ func Test_Reflection(t *testing.T) {
 		occupationTitle := reflect.ValueOf(occupationField.Interface()).Field(0)
 		Is.Equal(occupationTitle.String(), "engineer")
 	})
+
+	t.Run("reflecting into non-declared methods of variables declared as interfaces", func(t *testing.T) {
+
+		var fooInstance io.Writer = Foo{}
+
+		target, ok := fooInstance.(interface{ bar() string })
+
+		Is.True(ok)
+		Is.Equal(target.bar(), "bar")
+	})
+}
+
+
+
+type Foo struct {
+}
+
+func (f Foo) bar() string {
+	return "bar"
+}
+
+func (f Foo) Write(b []byte) (int, error) {
+	return len(b), nil
 }

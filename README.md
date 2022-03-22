@@ -18,3 +18,10 @@ godoc
 - [The Creeds of Software Craftsmanship](https://github.com/BeyondCodeBootcamp/beyondcodebootcamp/issues/18)
 - [Go proverbs](https://github.com/BeyondCodeBootcamp/go-proverbs/)
 - [golang-standards/project-layout](https://github.com/golang-standards/project-layout)
+
+## editing go mod file 
+(e.g version upgrade)
+
+```bash
+ go mod edit -go=1.18
+```
