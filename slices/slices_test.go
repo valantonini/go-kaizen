@@ -50,4 +50,29 @@ func Test_Slices(t *testing.T) {
 		source[0] = 7
 		Is.Equal(subslice[0], 4)
 	})
+
+	t.Run("a nil slice can be appended to", func(t *testing.T) {
+		var items []string
+
+		Is.Equal(items, nil)
+
+		items = append(items, "foo", "bar")
+
+		Is.Equal(items[0], "foo")
+		Is.Equal(items[1], "bar")
+	})
+
+	t.Run("a nil slice will panic if indexed", func(t *testing.T) {
+		defer func() {
+			if r := recover(); r != nil {
+				Is.Equal(r.(error).Error(), "runtime error: index out of range [0] with length 0")
+			}
+		}()
+
+		var items []string
+		items[0] = "foo"
+
+		// will jump to recover instead of reaching here
+		Is.Fail()
+	})
 }
