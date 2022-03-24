@@ -75,4 +75,20 @@ func Test_Slices(t *testing.T) {
 		// will jump to recover instead of reaching here
 		Is.Fail()
 	})
+
+	t.Run("copying slices will only copy to destination slices length", func(t *testing.T) {
+		src := []int{1, 2, 3}
+		var dest []int
+
+		copy(dest, src)
+		Is.Equal(len(dest), 0)
+
+		dest = make([]int, 2)
+		copy(dest, src)
+
+		Is.Equal(len(dest), 2)
+		Is.Equal(dest[0], 1)
+		Is.Equal(dest[1], 2)
+
+	})
 }
