@@ -1,7 +1,9 @@
 package channels
 
 import (
+	"context"
 	"github.com/matryer/is"
+	"golang.org/x/sync/errgroup"
 	"testing"
 	"time"
 )
@@ -78,5 +80,31 @@ func Test_Channels(t *testing.T) {
 		}
 
 		Is.Fail()
+	})
+
+	t.Run("closing a channel in a go routine allows range to be used without deadlock", func(t *testing.T) {
+
+		ch := make(chan int)
+
+		g, _ := errgroup.WithContext(context.TODO())
+		for i := 10; i > 0; i-- {
+			g.Go(func() error {
+				time.Sleep(time.Duration(i*10) * time.Millisecond)
+				ch <- i
+				return nil
+			})
+		}
+
+		go func() {
+			_ = g.Wait()
+			close(ch)
+		}()
+
+		var results []int
+		for result := range ch {
+			results = append(results, result)
+		}
+
+		Is.Equal(len(results), 10)
 	})
 }
