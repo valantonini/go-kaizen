@@ -89,6 +89,21 @@ func Test_Slices(t *testing.T) {
 		Is.Equal(len(dest), 2)
 		Is.Equal(dest[0], 1)
 		Is.Equal(dest[1], 2)
+	})
 
+	t.Run("unpacking slices to pass to variadic function", func(t *testing.T) {
+		// variadic function
+		sum := func(args ...int) int {
+			sum := 0
+			for _, n := range args {
+				sum += n
+			}
+			return sum
+		}
+
+		input := []int{1, 2, 3}
+		got := sum(input...) // unpack slice
+
+		Is.Equal(got, 6)
 	})
 }
