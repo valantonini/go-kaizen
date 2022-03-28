@@ -106,4 +106,17 @@ func Test_Slices(t *testing.T) {
 
 		Is.Equal(got, 6)
 	})
+
+	t.Run("full slice espression (specifying slice capacity)", func(t *testing.T) {
+		src := []int{1, 2, 3, 4, 5}
+		dest := src[:2:2]
+
+		dest = append(dest, 6)
+
+		Is.Equal(dest[2], 6)
+
+		// because capactity was specified when slicing, the backing array of dest is
+		// pointing to a different backing array cf. src
+		Is.Equal(src[2], 3)
+	})
 }
